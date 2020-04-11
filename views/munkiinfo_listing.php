@@ -73,7 +73,7 @@
                         d.columns[3].search.value = d.search.value.replace(/.*= (.+)$/, '$1');
                         // Clear global search
                         d.search.value = '';
-                        console.log(d.columns[3].search.value)
+                        // console.log(d.columns[3].search.value)
                     }
                 }
             },
