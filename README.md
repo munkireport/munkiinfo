@@ -29,8 +29,10 @@ _NOTE:_ the names line up with [Munki Preferences](https://github.com/munki/munk
 * MSULogEnabled
 * ManagedInstallDir
 * ManifestURL
+* OldestUpdateDays
 * PackageURL
 * PackageVerificationMode
+* PendingUpdateCount
 * ShowRemovalDetail
 * SoftwareRepoCACertificate
 * SoftwareRepoCAPath
