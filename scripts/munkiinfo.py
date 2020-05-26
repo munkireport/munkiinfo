@@ -82,7 +82,9 @@ def munki_prefs():
         'FollowHTTPRedirects',
         'PerformAuthRestarts',
         'RecoveryKeyFile',
-        'UseNotificationCenterDays'
+        'UseNotificationCenterDays',
+        'OldestUpdateDays',
+        'PendingUpdateCount'
     ]
     return our_prefs
 
