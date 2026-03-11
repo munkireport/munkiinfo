@@ -25,15 +25,29 @@ class Munkiinfo_model extends \Model
    * @param string data
    * @author erikng
    **/
-    public function process($plist)
+    public function process($data)
     {
-        $parser = new CFPropertyList();
-        $parser->parse($plist);
+        // Parse plist or YAML data
+        $trimmedData = ltrim($data);
+        if (strpos($trimmedData, '<?xml') === 0 ||
+            strpos($trimmedData, '<!DOCTYPE plist') !== false ||
+            strpos($trimmedData, '<plist') !== false) {
+            $parser = new CFPropertyList();
+            $parser->parse($data, CFPropertyList::FORMAT_XML);
+            $parsedData = $parser->toArray();
+        } else {
+            $parsedData = \Symfony\Component\Yaml\Yaml::parse($data);
+        }
 
-        $plist = $parser->toArray();
+        if (!$parsedData) {
+            return;
+        }
 
         $this->deleteWhere('serial_number=?', $this->serial_number);
-        $item = array_pop($plist);
+        $item = array_pop($parsedData);
+        if (!$item || !is_array($item)) {
+            return;
+        }
         reset($item);
         foreach($item as $key => $val) {
                 $this->munkiinfo_key = $key;

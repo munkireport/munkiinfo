@@ -13,16 +13,15 @@ import re
 from Foundation import CFPreferencesCopyAppValue
 # pylint: enable=E0611
 
-sys.path.append('/usr/local/munki')
-try:
-    from munkilib import prefs
-except ImportError:
-    # Legacy support
-    try:
-        from munkilib import munkicommon as prefs
-    except ImportError as msg:
-        print("%s" % msg)
-        exit(1)
+# For Swift MunkiTools compatibility, use CFPreferencesCopyAppValue directly
+class Prefs:
+    """Simple prefs wrapper for CFPreferencesCopyAppValue"""
+    @staticmethod
+    def pref(pref_name):
+        """Read a preference value"""
+        return CFPreferencesCopyAppValue(pref_name, 'ManagedInstalls')
+
+prefs = Prefs()
 
 
 def pref_to_str(pref_value):
