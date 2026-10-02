@@ -3,7 +3,7 @@ listings:
         view: munkiinfo_listing
         i18n: munkiinfo.listing
 reports:
-    mosyle:
+    munkiinfo:
         view: munkiinfo_report
         i18n: munkiinfo.reporttitle
 widgets:
