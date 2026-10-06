@@ -79,7 +79,7 @@ class munkiinfo_controller extends Module_controller
     public function get_scroll_widget($column)
     {
         // Remove non-column name characters
-        $column = preg_replace("/[^A-Za-z0-9_\-]]/", '', $column);
+        $column = preg_replace("/[^A-Za-z0-9_\-]/", '', $column);
 
         $sql = "SELECT  `munkiinfo_value` as ".$column.",
                         COUNT(`munkiinfo_value`) AS count
